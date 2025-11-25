@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimized Results</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+            background-color: darkgreen;
+            color: white;
+        }
+        h1 { text-align: center; }
+        table.data {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        table.data th, table.data td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+        }
+        table.data th {
+            background-color: #deb887; /* darker than blanchedalmond */
+            color: black;
+        }
+        table.data tr:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Optimized Results</h1>
+    {% for table in tables %}
+        {{ table|safe }}
+    {% endfor %}
+    <br>
+    /Go Back</a>
+</body>
+</html>
