@@ -127,7 +127,7 @@ def optimize_route(file, start_address, user_response):
             continue
 
         client = row["Client"]
-        lab_category_value = row["Lab Category  #"]
+        lab_category_value = row["Lab Category #"]
 
         address = clean_address(raw_address)
         # Identify if sample or not
