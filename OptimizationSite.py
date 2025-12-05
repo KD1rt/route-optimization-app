@@ -101,7 +101,7 @@ def optimize_route(file, start_address, user_response):
     df.columns = [" ".join(c.strip().split()) for c in df.columns]
 
     # Required columns check
-    required_columns = ['Address', 'Lab Category #', 'Client']
+    required_columns = ['Address', 'Lab Category  #', 'Client']
     if not set(required_columns).issubset(df.columns):
         missing_columns = set(required_columns) - set(df.columns)
         raise ValueError(f"Missing required columns: {missing_columns}")
