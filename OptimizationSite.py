@@ -96,12 +96,17 @@ def optimize_route(file, start_address, user_response):
     df = pd.read_csv(file)
     print("CSV file read successfully.")
     print(f'Total rows in CSV file: {len(df)}')
+    
+    # Normalize column names (collapse multiple spaces)
+    df.columns = [" ".join(c.strip().split()) for c in df.columns]
 
-    required_columns = ['Address', 'Lab Category  #', 'Client']
-    if not set(required_columns).issubset(df.columns):  # FIXED: Added set() conversion
+    # Required columns check
+    required_columns = ['Address', 'Lab Category #', 'Client']
+    if not set(required_columns).issubset(df.columns):
         missing_columns = set(required_columns) - set(df.columns)
-        error_message = f"Missing required columns: {missing_columns}"
-        raise ValueError(error_message)
+        raise ValueError(f"Missing required columns: {missing_columns}")
+
+
     print(f"All required columns are present: {required_columns}")
 
     # Filter out rows with missing address
