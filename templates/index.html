@@ -5,8 +5,7 @@
     <style>
         body {
         font-family: 'Segoe UI', Tahoma, sans-serif;
-        color:azure;
-        background: linear-gradient(135deg, #06642d 0%, #373535 100%);
+        background: linear-gradient(135deg, #06642d 0%, #080000 100%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -15,7 +14,7 @@
         }
         .container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.1); /* Slight transparency for contrast */
             padding: 20px;
             border-radius: 10px;
         }
@@ -38,71 +37,24 @@
             color: black;
         }
         button {
-            background-color: #228B22;
+            background-color: #228B22; /* Forest green */
             color: white;
             cursor: pointer;
         }
         button:hover {
-            background-color: #32CD32;
-        }
-        #LoadingOverlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #06642d 0%, #373535 100%);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        .loading-content {
-            text-align: center;
-            color: white;
-        }
-        .loading-content h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        .spinner {
-            border: 10px solid #f3f3f3;
-            border-top: 10px solid #228B22;  /* FIXED: Added "solid #228B22" */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }  /* FIXED: Changed "rotation" to "rotate" */
-            100% { transform: rotate(360deg); }
+            background-color: #32CD32; /* Lighter green on hover */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Upload CSV for Route Optimization</h1>
-        <form method="POST" enctype="multipart/form-data" onsubmit="showLoading()">
+        <form method="POST" enctype="multipart/form-data">
             <input type="file" name="file" required><br>
             <input type="text" name="start_address" placeholder="Enter start address" required><br>
-            <input type="text" name="name_date" placeholder="Enter name and date for route created" required><br>
+            <input type="text" name="user_response" placeholder="Enter Date and Who created (ex: 11_21_25_KSCAVO)" required><br>
             <button type="submit">Optimize</button>
         </form>
     </div>
-    <div id="LoadingOverlay">
-        <div class="loading-content">
-            <h2>Loading...Optimizing Your Route</h2>
-            <div class="spinner"></div>  <!-- FIXED: Changed "spinnger" to "spinner" -->
-            <p style="font-size: 18px;">This may take a few moments</p>
-            <p style="font-size:14px; margin-top: 20px;">Processing addresses and calculating optimal route...</p>
-        </div>
-    </div>
-    <script>
-        function showLoading() {
-            document.getElementById('LoadingOverlay').style.display = 'flex';
-        }
-    </script>
-            
 </body>
 </html>
