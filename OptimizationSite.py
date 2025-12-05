@@ -90,22 +90,19 @@ def optimize_route(file, start_address, user_response):
             if loc['job_id'] == job_id:
                 return loc
         return None
+    
     # PHASE 1: Read and clean data
     print(" PHASE 1: Reading and Cleaning Data ")
    
     df = pd.read_csv(file)
     print("CSV file read successfully.")
     print(f'Total rows in CSV file: {len(df)}')
-    
-    # Normalize column names (collapse multiple spaces)
-    df.columns = [" ".join(c.strip().split()) for c in df.columns]
 
-    # Required columns check
-    required_columns = ['Address', 'Lab Category #', 'Client']
+    # Required columns check (reading CSV as-is with double space)
+    required_columns = ['Address', 'Lab Category  #', 'Client']
     if not set(required_columns).issubset(df.columns):
         missing_columns = set(required_columns) - set(df.columns)
         raise ValueError(f"Missing required columns: {missing_columns}")
-
 
     print(f"All required columns are present: {required_columns}")
 
@@ -122,12 +119,12 @@ def optimize_route(file, start_address, user_response):
     failed_location_data = []
 
     for index, row in df.iterrows():
-        raw_address = str(row['Address'])  # FIXED: Convert to string first
+        raw_address = str(row['Address'])
         if raw_address.lower() == 'nan' or raw_address.strip() == '':
             continue
 
         client = row["Client"]
-        lab_category_value = row["Lab Category #"]
+        lab_category_value = row["Lab Category  #"]  # Double space to match CSV
 
         address = clean_address(raw_address)
         # Identify if sample or not
@@ -274,7 +271,7 @@ def optimize_route(file, start_address, user_response):
             job_id = step['job']
             matched_location = find_location_by_id(job_id, optimal_job_order)
             if matched_location:
-                stop_counter += 1  # FIXED: Increment BEFORE adding to list
+                stop_counter += 1
                 optimized_order.append({
                     "Stop Number": f"Stop {stop_counter}",
                     "Client": matched_location["Client"],
@@ -285,7 +282,7 @@ def optimize_route(file, start_address, user_response):
                 print(f" Stop {stop_counter}: {matched_location['Address']} (Sample: {'Yes' if matched_location['is_sample'] else 'No'})")
     
     if lab_stop:
-        stop_counter += 1  # FIXED: Increment counter for lab stop too
+        stop_counter += 1
         optimized_order.append({
             "Stop Number": f"Stop {stop_counter}",
             "Client": lab_stop["Client"],
@@ -320,4 +317,3 @@ if __name__ == '__main__':
     print("Starting Server")
     print("Access the application at http://127.0.0.1:5000")
     app.run(host='0.0.0.0', port=5000, debug=False)
-
