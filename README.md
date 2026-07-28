@@ -1,10 +1,5 @@
 # Route Optimization Web Application
 
-https://img.shields.io/badge/Python-3.11-blue
-https://img.shields.io/badge/Flask-Web%20Application-black
-https://img.shields.io/badge/Pandas-Data%20Processing-purple
-https://img.shields.io/badge/OpenRouteService-Route%20Optimization-green
-
 A Flask-based route optimization application that automates field routing workflows using the OpenRouteService Geocoding and Optimization APIs.
 
 Designed for field operations, environmental consulting, and service-based workflows, the application takes a CSV of client locations, geocodes addresses, generates an optimized travel sequence, and exports a route schedule for daily operations.
