@@ -6,19 +6,6 @@ Designed for field operations, environmental consulting, and service-based workf
 
 ---
 
-## Table of Contents
-
-- #overview
-- #key-features
-- #tech-stack
-- #how-it-works
-- #input-requirements
-- [installation
-- #usage
-- [skills-demonstrated
-- #future-improvements
-- [License](#--
-
 ## Overview
 
 Manual route planning can be time-consuming and inefficient when managing multiple client visits in a single day.
